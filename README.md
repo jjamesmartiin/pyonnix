@@ -5,3 +5,15 @@ There might be a better way to make the environment (maybe by adding it to the n
 
 This seems to work for making python terminal apps and basic charting. Feel free to fork or copy and use for your own needs.  
 
+# Use
+This repo is probably best included as a submodule I think. 
+here's the command:
+
+
+Make a shell.nix like:
+```nix
+import pyonnix/shell.nix
+```
+- now you can run `nix-shell` and it will create a shell 
+- with the dependencies in the shell.nix file
+

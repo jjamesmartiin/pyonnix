@@ -27,8 +27,8 @@ Now make a shell.nix file. The location should be at the root of your project (l
 ```nix
 import pyonnix/shell.nix
 ```
-- now you can run `nix-shell` and it will create a shell 
-- with the dependencies in the shell.nix file
+- now you can run `nix-shell` and it will create a shell with the dependencies in the shell.nix file and the python packages specified in the requirements.txt file.
+- You can also add any other dependencies you want to the shell.nix file or the requirements.txt file.
 
 # Cleanup
 ```bash

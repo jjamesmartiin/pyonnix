@@ -1,3 +1,6 @@
+# TODO:
+Feel free to make an issue if you have any suggestions or improvements.
+
 # Introduction
 This repository is a way for me to easily template and create new python projects in nixos. 
 
@@ -6,7 +9,7 @@ There might be a better way to make the environment (maybe by adding it to the n
 This seems to work for making python terminal apps and basic charting. Feel free to fork or copy and use for your own needs.  
 
 # Use
-TLDR:
+**TLDR:**
 ```
 git submodule add https://github.com/jjamesmartiin/pyonnix.git
 echo "import pyonnix/shell.nix" > shell.nix # create a shell.nix file in the root of your project
@@ -26,3 +29,10 @@ import pyonnix/shell.nix
 ```
 - now you can run `nix-shell` and it will create a shell 
 - with the dependencies in the shell.nix file
+
+# Cleanup
+```bash
+git submodule deinit -f -- pyonnix
+git rm -f pyonnix
+rm -rf .git/modules/pyonnix
+```

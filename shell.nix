@@ -24,5 +24,5 @@ in
     python312Packages.cmake
     zlib
   ]);
-  runScript = "nix-shell nix/pyenv.nix";
+  runScript = "nix-shell pyonnix/pyenv.nix";
 }).env

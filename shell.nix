@@ -15,20 +15,23 @@ let
       url = "https://github.com/NixOS/nixpkgs/archive/da044451c6a70518db5b730fe277b70f494188f1.tar.gz";
       sha256 = "sha256:11z08fa0s7r9hryllhjj7kyn4z6bsixlqz7iwgsmf1k4p3hcl692";
     }) { }).pkgs;
+
+
+  pythonNixpkgsDeps = with pkgs; [
+    # needed for compiling stuff like yfinance
+    cmake
+    python312Packages.cmake
+    zlib
+
+    # for openai-whisper
+    # ffmpeg
+  ];
 in
 
 (pkgs.buildFHSEnv {
   name = "simpleFHS";
-  targetPkgs = pkgs: (with pkgs; [
-    cmake
-    python312Packages.cmake
-    zlib
-  ]);
-  multiPkgs = pkgs: (with pkgs; [
-    cmake
-    python312Packages.cmake
-    zlib
-  ]);
+  targetPkgs = pkgs: (pythonNixpkgsDeps);
+  multiPkgs = pkgs: (pythonNixpkgsDeps);
   runScript = if (NIX_PATH != "") then
     "nix-shell pyonnix/pyenv.nix"
   else

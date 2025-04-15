@@ -19,14 +19,18 @@ let
     python -m venv .venv
     source .venv/bin/activate
     pip install --upgrade pip
+    
     # install after cleanup
     # check for requirements.txt
     if [ -f requirements.txt ]; then
       echo "Installing requirements from requirements.txt"
       pip install -r requirements.txt
     else
-      echo "No requirements.txt found, skipping pip install"
-    fi
+      echo "!! WARNING: NO requirements.txt FOUND"
+      # touch requirements.txt
+      echo "yfinance" > requirements.txt
+      pip install -r requirements.txt
+    fi    
   '';
 in pkgs.mkShell rec {
   name = "impurePythonEnv";
@@ -61,15 +65,6 @@ in pkgs.mkShell rec {
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
     export LD_LIBRARY_PATH=${stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH # see default.nix
-
-    # install after cleanup
-    # check for requirements.txt
-    if [ -f requirements.txt ]; then
-      echo "Installing requirements from requirements.txt"
-      pip install -r requirements.txt
-    else
-      echo "No requirements.txt found, skipping pip install"
-    fi
   '';
 
   # Now we can execute any commands within the virtual environment.

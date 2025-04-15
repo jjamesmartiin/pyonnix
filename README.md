@@ -8,6 +8,10 @@ There might be a better way to make the environment (maybe by adding it to the n
 
 This seems to work for making python terminal apps and basic charting. Feel free to fork or copy and use for your own needs.  
 
+### Note:
+- If you are using this without `nixpkgs` set in `NIX_PATH` (check with `echo $NIX_PATH`), you will need to run `NIX_BUILD_PATH=/bin/bash nix-shell pyonnix/pyenv.nix`
+    - as of 250415 I should be handling it... the only time you really should get this problem is when using Nix on a non-nixos system like Ubuntu.
+
 # Use
 **TLDR:**
 ```

@@ -1,8 +1,13 @@
 # shell.nix
+# use: 
+  # cd .. && nix-shell pyonnix/
+
 { pkgs ? import <nixpkgs> {} }:
 
 let
-  pkgs = if builtins.getEnv "NIX_PATH" != "" then
+  NIX_PATH = builtins.getEnv "NIX_PATH";
+
+  pkgs = if (NIX_PATH != "") then
     import <nixpkgs> {}
   else
   # lets try and add a let here to get the commit hash
@@ -24,5 +29,9 @@ in
     python312Packages.cmake
     zlib
   ]);
-  runScript = "nix-shell pyonnix/pyenv.nix";
+  runScript = if (NIX_PATH != "") then
+    "nix-shell pyonnix/pyenv.nix"
+  else
+    "NIX_BUILD_PATH=/bin/bash nix-shell pyonnix/pyenv.nix"; # this is a workaround for the issue with the NIX_PATH env variable
+    # "NIX_BUILD_PATH=$(which bash)";
 }).env

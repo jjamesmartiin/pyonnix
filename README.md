@@ -29,7 +29,7 @@ git submodule add https://github.com/jjamesmartiin/pyonnix.git
 
 Now make a shell.nix file. The location should be at the root of your project (like with the requirements.txt file). 
 ```nix
-import pyonnix/shell.nix
+echo "import pyonnix/shell.nix" > shell.nix # create a shell.nix file in the root of your project
 ```
 - now you can run `nix-shell` and it will create a shell with the dependencies in the shell.nix file and the python packages specified in the requirements.txt file.
 - You can also add any other dependencies you want to the shell.nix file or the requirements.txt file.

@@ -1,6 +1,6 @@
 # shell.nix
 # use: 
-  # cd .. && nix-shell pyonnix/
+  # cd .. && nix-shell ./
 
 { pkgs ? import <nixpkgs> {} }:
 
@@ -33,8 +33,8 @@ in
   targetPkgs = pkgs: (pythonNixpkgsDeps);
   multiPkgs = pkgs: (pythonNixpkgsDeps);
   runScript = if (NIX_PATH != "") then
-    "nix-shell pyonnix/pyenv.nix"
+    "nix-shell ./pyenv.nix"
   else
-    "NIX_BUILD_PATH=/bin/bash nix-shell pyonnix/pyenv.nix"; # this is a workaround for the issue with the NIX_PATH env variable
+    "NIX_BUILD_PATH=/bin/bash nix-shell ./pyenv.nix"; # this is a workaround for the issue with the NIX_PATH env variable
     # "NIX_BUILD_PATH=$(which bash)";
 }).env

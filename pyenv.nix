@@ -65,6 +65,8 @@ in pkgs.mkShell rec {
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
     export LD_LIBRARY_PATH=${stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH # see default.nix
+    CUDA_HOME=${pkgs.cudaPackages.cudatoolkit}
+    PATH=$CUDA_HOME/bin:$PATH
   '';
 
   # Now we can execute any commands within the virtual environment.
@@ -72,6 +74,9 @@ in pkgs.mkShell rec {
     # allow pip to install wheels
     unset SOURCE_DATE_EPOCH
     export LD_LIBRARY_PATH=${stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH # see default.nix
+
+    CUDA_HOME=${pkgs.cudaPackages.cudatoolkit}
+    PATH=$CUDA_HOME/bin:$PATH
 
     ${startPythonScript}
   '';
